@@ -69,8 +69,9 @@ main{
     
 
     display: grid;
-    grid-template-columns: minmax(var(--main-content-min-width), 1fr);
-    grid-template-rows: minmax(var(--main-content-min-height), 1fr);
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr)
+                        minmax(0, 1fr);
 
     overflow: hidden;
 
@@ -98,7 +99,7 @@ img{
                               0
                               0;
 
-    grid-area: 1 / 1 / 1 / 1;
+    grid-area: 1 / 1 / -1 / 1;
 
     height: var(--home-container-height);
     width: 100%;
