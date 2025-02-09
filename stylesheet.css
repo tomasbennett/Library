@@ -1,0 +1,125 @@
+:root{
+    font-size: 62.5%;
+
+
+}
+
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body{
+    --main-content-min-height: 80rem;
+    --main-content-min-width: 60rem;
+
+    font-size: 1.6rem;
+    font-family: Papyrus, fantasy, sans-serif;
+
+    width: 100dvw;
+    min-width: var(--main-content-min-width);
+    height: 100dvh;
+    min-height: var(--main-content-min-height);
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: auto;
+}
+
+header{
+    --header-container-height: 8rem;
+
+    --header-container-padding: 0 max(8%, 4rem);
+    
+    --header-title-font-size: 1.1rem;
+    --header-title-font-weight: 550;
+
+    height: var(--header-container-height);
+
+    padding: var(--header-container-padding);
+
+    font-size: var(--header-title-font-size);
+    font-weight: var(--header-title-font-weight);
+
+    background: linear-gradient(to right, rgb(61, 61, 61), rgb(15, 15, 15));
+
+    border-bottom-width: .3rem;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+main{
+
+    flex: 1 0 0;
+    height: 0;
+    width: 100%;
+
+    
+
+    display: grid;
+    grid-template-columns: minmax(var(--main-content-min-width), 1fr);
+    grid-template-rows: minmax(var(--main-content-min-height), 1fr);
+
+    overflow: hidden;
+
+    position: relative;
+    z-index: 0;
+}
+
+img{
+    grid-area: 1 / 1 / 1 / 1;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: -1;
+}
+
+.home-container{
+    --home-container-height: clamp(55%, 60rem, 60%);
+
+    --home-container-shadow-height: 1rem;
+
+    --home-container-padding: max(1rem, var(--home-container-shadow-height))
+                              0
+                              0;
+
+    grid-area: 1 / 1 / 1 / 1;
+
+    height: var(--home-container-height);
+    width: 100%;
+
+    background: linear-gradient(to bottom right, darkgrey, rgb(31, 31, 31));
+
+    margin-top: auto;
+
+    position: relative;
+}
+
+.home-container::before{
+
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: var(--home-container-shadow-height);
+
+    background: linear-gradient(to bottom, rgb(53, 53, 53), transparent);
+}
