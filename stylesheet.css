@@ -1,7 +1,5 @@
 :root{
     font-size: 62.5%;
-
-
 }
 
 *,
@@ -61,7 +59,6 @@ header{
 }
 
 main{
-
     flex: 1 0 0;
     height: 0;
     width: 100%;
@@ -70,8 +67,7 @@ main{
 
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr)
-                        minmax(0, 1fr);
+    grid-template-rows: repeat(2, minmax(0, 1fr));
 
     overflow: hidden;
 
@@ -79,8 +75,65 @@ main{
     z-index: 0;
 }
 
-img{
+main .upper-image-container{
+    --upper-image-font-size-title: 10rem;
+    --upper-image-font-weight-title: 700;
+
     grid-area: 1 / 1 / 1 / 1;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    row-gap: 4rem;
+
+    color: black;
+
+    background-image: url(./images/background-bookshelf.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    overflow: hidden;
+
+    z-index: -1;
+}
+
+main .upper-image-container .upper-image-title{
+    font-size: var(--upper-image-font-size-title);
+    font-weight: var(--upper-image-font-weight-title);
+
+    box-sizing: content-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* background: linear-gradient(to right, transparent, antiquewhite 10%, antiquewhite 90%, transparent); */
+
+    padding: 1rem 10rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* img{
+    grid-area: 1 / 1 / -1 / 1;
 
     width: 100%;
     height: 100%;
@@ -88,10 +141,27 @@ img{
     object-fit: cover;
 
     z-index: -1;
+} */
+
+
+.upper-image-title{
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 .home-container{
-    --home-container-height: clamp(55%, 60rem, 60%);
+    /* --home-container-height: clamp(55%, 60rem, 60%); */
 
     --home-container-shadow-height: 1rem;
 
@@ -99,20 +169,20 @@ img{
                               0
                               0;
 
-    grid-area: 1 / 1 / -1 / 1;
+    grid-area: 2 / 1 / 2 / 1;
 
-    height: var(--home-container-height);
+    height: 100%;
     width: 100%;
+
+    margin-top: auto;
 
     background: linear-gradient(to bottom right, darkgrey, rgb(31, 31, 31));
 
-    margin-top: auto;
 
     position: relative;
 }
 
 .home-container::before{
-
     content: '';
 
     position: absolute;
@@ -123,4 +193,8 @@ img{
     height: var(--home-container-shadow-height);
 
     background: linear-gradient(to bottom, rgb(53, 53, 53), transparent);
+}
+
+.books-container{
+    list-style-type: none;
 }

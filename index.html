@@ -11,13 +11,23 @@
     <script defer src="script.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Library</h1>
+    <header role="banner">
+        <h1 id="site-title">Library</h1>
     </header>
-    <main>
-        <img src="./images/background-bookshelf.jpg" alt="Background bookshelf Image">
+    <main role="main">
+        <div class="upper-image-container">
+            <h2 id="library-title" class="upper-image-title">Library</h2>
+            <p id="library-description" class="upper-image-decription">
+                Please add a book to the library using the button below:
+            </p>
+            <button type="button" id="add-book" aria-describedby="library-description">
+                Add Book to Library
+            </button>
+        </div>
         <div class="home-container">
-            <ul class="books-container"></ul>
+            <ul class="books-container" role="list" aria-live="polite">
+                <!-- Dynamically added book items should have role="listitem" -->
+            </ul>
         </div>
     </main>
 </body>
