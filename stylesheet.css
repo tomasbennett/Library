@@ -1,5 +1,8 @@
 :root{
     font-size: 62.5%;
+
+    --light-colour: #ffffff;
+    --dark-colour: #0f0f11;
 }
 
 *,
@@ -67,7 +70,8 @@ main{
 
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: repeat(2, minmax(0, 1fr));
+    grid-template-rows: minmax(0, 1fr)
+                        minmax(0, 1.8fr);
 
     overflow: hidden;
 
@@ -79,6 +83,7 @@ main .upper-image-container{
     --upper-image-font-size-title: 10rem;
     --upper-image-font-weight-title: 700;
 
+
     grid-area: 1 / 1 / 1 / 1;
 
     width: 100%;
@@ -89,13 +94,14 @@ main .upper-image-container{
     justify-content: center;
     align-items: center;
 
-    row-gap: 4rem;
+    row-gap: 2rem;
 
     color: black;
 
     background-image: url(./images/background-bookshelf.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center 30%;
 
     overflow: hidden;
 
@@ -105,16 +111,47 @@ main .upper-image-container{
 main .upper-image-container .upper-image-title{
     font-size: var(--upper-image-font-size-title);
     font-weight: var(--upper-image-font-weight-title);
+}
 
-    box-sizing: content-box;
+main .upper-image-container #add-book{
+    --drop-shadow-colour: rgb(85, 85, 85);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 30rem;
+    height: 8rem;
 
-    /* background: linear-gradient(to right, transparent, antiquewhite 10%, antiquewhite 90%, transparent); */
+    filter: drop-shadow(.4rem .4rem 1rem var(--drop-shadow-colour)) 
+            drop-shadow(.4rem .4rem 1.5rem var(--drop-shadow-colour))
+            drop-shadow(.4rem .4rem 2rem var(--drop-shadow-colour));
 
-    padding: 1rem 10rem;
+    cursor: pointer;
+    user-select: none;
+
+
+
+
+    & path{
+        fill: var(--dark-colour);
+
+        transition: fill 200ms linear;
+    }
+
+    & text{
+        fill: var(--light-colour);
+        stroke: var(--light-colour);
+
+        transition: fill 200ms linear,
+                    stroke 200ms linear;
+    }
+
+
+    transition: transform 100ms linear;
+}
+
+
+
+
+main .upper-image-container #add-book:active{
+    transform: scale(96%);
 }
 
 
@@ -130,22 +167,6 @@ main .upper-image-container .upper-image-title{
 
 
 
-
-
-/* img{
-    grid-area: 1 / 1 / -1 / 1;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    z-index: -1;
-} */
-
-
-.upper-image-title{
-}
 
 
 
@@ -161,8 +182,6 @@ main .upper-image-container .upper-image-title{
 
 
 .home-container{
-    /* --home-container-height: clamp(55%, 60rem, 60%); */
-
     --home-container-shadow-height: 1rem;
 
     --home-container-padding: max(1rem, var(--home-container-shadow-height))
@@ -170,6 +189,10 @@ main .upper-image-container .upper-image-title{
                               0;
 
     grid-area: 2 / 1 / 2 / 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     height: 100%;
     width: 100%;
@@ -195,6 +218,98 @@ main .upper-image-container .upper-image-title{
     background: linear-gradient(to bottom, rgb(53, 53, 53), transparent);
 }
 
-.books-container{
+ul.books-container{
     list-style-type: none;
+
+    display: flex;
+
+    height: 40rem;
+    width: auto;
+
+    padding: 3rem 3rem;
+
+    border: .2rem var(--light-colour) solid;
+    border-radius: .6rem;
+}
+
+ul.books-container li{
+    --books-padding-top-bottom: 2rem;
+
+    width: 23rem;
+    height: 100%;
+
+    border-radius: 1rem;
+
+    box-shadow: 2rem 2rem 2rem rgb(43, 43, 43),
+                inset 0rem calc(-1 * var(--books-padding-top-bottom)) 4rem rgba(12, 12, 12, 0.3);
+
+    background-color: #dbd9c9;
+    color: black;
+
+    padding: var(--books-padding-top-bottom) 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    text-align: center;
+}
+
+ul.books-container li .book-title{
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+
+ul.books-container li .book-description{
+    
+}
+
+ul.books-container li .book-buttons-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 4rem;
+}
+
+.book-buttons-container button{
+    height: 100%;
+    aspect-ratio: 1;
+
+    padding: .4rem;
+
+    border: 0;
+    border-radius: .5rem;
+
+    background-color: transparent;
+
+    cursor: pointer;
+}
+
+
+
+.book-buttons-container button svg{
+    fill: rgb(73, 73, 73);
+}
+
+
+@media (hover: hover){
+    main .upper-image-container #add-book:hover path{
+        fill: var(--light-colour);
+    }
+
+    main .upper-image-container #add-book:hover text{
+        fill: var(--dark-colour);
+        stroke: var(--dark-colour);
+    }
+
+
+    .book-buttons-container button:hover{
+        background-color: rgba(163, 163, 163, 0.4);
+    }
+
+
 }
