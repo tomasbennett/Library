@@ -1,0 +1,62 @@
+@media (hover: hover){
+    main .upper-image-container #add-book:hover path{
+        fill: var(--light-colour);
+    }
+
+    main .upper-image-container #add-book:hover text{
+        fill: var(--dark-colour);
+        stroke: var(--dark-colour);
+    }
+
+
+
+    .book-buttons-container .edit-book-button:hover{
+        background-color: rgba(163, 163, 163, 0.4);
+
+        & svg{
+            fill: var(--dark-colour);
+        }
+
+    }
+
+    .book-buttons-container .delete-book-button:hover{
+        background-color: rgba(148, 59, 59, 0.4);
+
+        & svg{
+            fill: var(--light-colour);
+        }
+    }
+
+
+}
+
+.book-buttons-container .edit-book-button:active{
+    background-color: rgba(163, 163, 163, 0.8);
+
+    & svg{
+        fill: var(--dark-colour);
+    }
+
+}
+
+.book-buttons-container .delete-book-button:active{
+    background-color: rgba(148, 59, 59, 0.8);
+
+    & svg{
+        fill: var(--light-colour);
+    }
+}
+
+
+
+
+
+
+
+
+
+@media (height <= 56.25rem){
+    body{
+        color: aqua;
+    }
+}
