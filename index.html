@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="./stylesheets/stylesheet.css">
     <link rel="stylesheet" href="./stylesheets/stylesheet-functionality.css">
+    <link rel="stylesheet" href="./stylesheets/book-item-stylesheet.css">
     <link rel="icon" type="image/png" href="./images/books.png">
 
     <script defer src="./scripts/viewBox.js"></script>
@@ -16,6 +17,11 @@
     <header role="banner">
         <h1 id="site-title">Library</h1>
     </header>
+
+    <dialog id="dialog" class="book-item">
+        This is a dialog box!
+    </dialog>
+
     <main role="main">
         <div class="upper-image-container">
             <h2 id="library-title" class="upper-image-title">Library</h2>
@@ -23,19 +29,18 @@
             <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
             <svg
-            preserveAspectRatio="xMidYMid meet"
-            id="add-book"
-                <g
-                    id="g4">
+                id="add-book"
+                preserveAspectRatio="xMidYMid meet"
+                <g id="g4">
                     <path
-                    id="path6"
-                    style="fill-opacity:1;stroke-width:20.765;stroke-dasharray:none"
-                    d="M -6.8861393,7.7791457 -28.522064,32.220854 a 11.73641,11.73641 90 0 0 0,15.558292 L -6.8861393,72.220854 A 23.071302,23.071302 24.242291 0 0 10.38913,80 h 129.22174 150 a 23.071302,23.071302 155.75771 0 0 17.27527,-7.779146 l 21.63592,-24.441708 a 11.73641,11.73641 90 0 0 0,-15.558292 L 306.88614,7.7791457 A 23.071302,23.071302 24.242291 0 0 289.61087,0 h -129.22174 -150 A 23.071302,23.071302 155.75771 0 0 -6.8861393,7.7791457 Z"/>
+                        id="path6"
+                        style="fill-opacity:1;stroke-width:20.765;stroke-dasharray:none"
+                        d="M -6.8861393,7.7791457 -28.522064,32.220854 a 11.73641,11.73641 90 0 0 0,15.558292 L -6.8861393,72.220854 A 23.071302,23.071302 24.242291 0 0 10.38913,80 h 129.22174 150 a 23.071302,23.071302 155.75771 0 0 17.27527,-7.779146 l 21.63592,-24.441708 a 11.73641,11.73641 90 0 0 0,-15.558292 L 306.88614,7.7791457 A 23.071302,23.071302 24.242291 0 0 289.61087,0 h -129.22174 -150 A 23.071302,23.071302 155.75771 0 0 -6.8861393,7.7791457 Z"/>
                     <text
-                    style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.6269px;font-family:Papyrus;-inkscape-font-specification:'Papyrus, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill-opacity:1;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
-                    x="16.00458"
-                    y="55.174232"
-                    id="text1">+ Add Book</text>
+                        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.6269px;font-family:Papyrus;-inkscape-font-specification:'Papyrus, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill-opacity:1;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+                        x="16.00458"
+                        y="55.174232"
+                        id="text1">+ Add Book</text>
                 </g>
             </svg>
 
@@ -44,7 +49,7 @@
         <div class="home-container">
             <ul class="books-container" role="book-list" aria-live="polite">
                 
-                <li>
+                <li class="book-item">
 
                     <div class="image-container">
                         <img loading="lazy" id="dark-blue" src="./images/book-images/dark-blue-cover.png" alt="Book Image" class="book-image">
@@ -67,7 +72,7 @@
 
                 </li>
 
-                <li>
+                <li class="book-item">
 
                     <div class="image-container">
                         <img loading="lazy" id="brown-sealed" src="./images/book-images/brown-cover-sealed.png" alt="Book Image" class="book-image">
@@ -90,7 +95,7 @@
                     
                 </li>
 
-                <li>
+                <li class="book-item">
 
                     <div class="image-container">
                         <img loading="lazy" id="light-blue" src="./images/book-images/light-blue-cover.png" alt="Book Image" class="book-image">
@@ -113,7 +118,7 @@
                     
                 </li>
 
-                <li>
+                <li class="book-item">
 
                     <div class="image-container">
                         <img loading="lazy" src="./images/book-images/brown-cover-unsealed.png" alt="Book Image" class="book-image">
@@ -136,7 +141,7 @@
                     
                 </li>
 
-                <li>
+                <li class="book-item">
 
                     <div class="image-container">
                         <img loading="lazy" src="./images/book-images/black-cover.png" alt="Book Image" class="book-image">
