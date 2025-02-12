@@ -1,0 +1,156 @@
+dialog{
+    
+
+    border: 0;
+
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+
+    background-color: transparent;
+
+    border-radius: var(--book-li-border-radius);
+
+    overflow-y: auto;
+
+    max-height: 80dvh;
+
+    box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.8),
+                0 0 3rem rgba(0, 0, 0, 0.8),
+                0 0 4rem rgba(0, 0, 0, 0.8);
+}
+
+dialog::backdrop{
+    background-color: rgba(111, 111, 111, 0.6);
+}
+
+dialog button{
+    border: 0;
+    background-color: transparent;
+
+    cursor: pointer;
+}
+
+#dialog textarea{
+    resize: vertical;
+}
+
+
+
+
+
+
+#dialog form.book-edit{
+    --book-edit-padding: 2.2rem;
+
+    --book-edit-row-gap: 2rem;
+
+    width: calc(var(--books-li-min-width) * 1.3);
+    aspect-ratio: 1 / 2;
+
+    border-radius: var(--book-li-border-radius);
+    
+    background-color: var(--book-li-bcg);
+
+    padding: var(--book-edit-padding);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    row-gap: var(--book-edit-row-gap);
+
+    box-shadow: inset 0rem calc(-1 * var(--book-edit-padding)) 4rem rgba(12, 12, 12, 0.3);
+
+
+    
+
+}
+
+#dialog form.book-edit > *{
+    flex-shrink: 0;
+}
+
+#dialog #exit-book-edit{
+    margin-left: auto;
+
+    height: 3.5rem;
+    aspect-ratio: 1;
+
+    padding: .4rem;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media(hover: hover){
+    #dialog #exit-book-edit:hover{
+        background-color: rgba(253, 0, 0, 0.8);
+
+        & svg{
+            fill: white;
+        }
+    }
+}   
+
+#dialog .title-label{
+    width: 100%;
+    height: 6rem;
+
+    padding: .4rem;
+}
+
+#dialog .description-label{
+    width: 100%;
+    /* height: 14rem; */
+
+    min-height: 14rem;
+
+    padding: .4rem;
+}
+
+#dialog .title-label,
+#dialog .description-label{
+    background: linear-gradient(to bottom, grey 20%,
+                                            transparent 20%,
+                                            transparent 80%,
+                                            grey 80%);
+
+    /* background-color: grey; */
+
+    border-radius: 3%;
+}
+
+#dialog input,
+#dialog textarea{
+    width: 100%;
+    min-height: 100%;
+
+    background-color: var(--book-li-bcg);
+    color: black;
+
+    border-radius: inherit;
+
+    font-size: 1.4rem;
+
+    padding-left: .5rem;
+
+    border: 0;
+
+    &::placeholder{
+        color: black;
+
+        font-family: Papyrus, fantasy, sans-serif;
+    }
+}
+
+#dialog #submit-book-edit{
+    font-size: large;
+    font-weight: 770;
+
+    font-family: Papyrus, fantasy, sans-serif;
+}

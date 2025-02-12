@@ -18,9 +18,33 @@
         <h1 id="site-title">Library</h1>
     </header>
 
-    <dialog id="dialog" class="book-item">
-        This is a dialog box!
+
+
+    <dialog id="dialog">
+        <form method="dialog" class="book-edit">
+            
+            <button type="submit" id="exit-book-edit" class="close-modal">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+            </button>
+
+            <div class="image-container">
+                <img loading="lazy" id="dark-blue" src="./images/book-images/dark-blue-cover.png" alt="Book Image" class="book-image">
+            </div>
+
+            <label class="title-label">
+                <input required placeholder="Enter book title here..." type="text" name="title-input" id="title-input">
+            </label>
+
+            <label class="description-label">
+                <textarea required placeholder="Enter the books description here..." name="description-input" id="description-input"></textarea>
+            </label>
+
+            <button type="submit" class="close-modal" id="submit-book-edit">Submit</button>
+
+        </form>
     </dialog>
+
+
 
     <main role="main">
         <div class="upper-image-container">
