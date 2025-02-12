@@ -54,10 +54,11 @@
 
 
 
-@media (height <= 56.25rem){
+@media (aspect-ratio >= 1.73){
 
     body{
         min-width: 77.5rem;
+        min-height: 60rem;
     }
 
     main{

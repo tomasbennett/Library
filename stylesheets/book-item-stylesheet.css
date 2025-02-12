@@ -106,7 +106,6 @@ dialog button{
 
 #dialog .description-label{
     width: 100%;
-    /* height: 14rem; */
 
     min-height: 14rem;
 
@@ -120,7 +119,6 @@ dialog button{
                                             transparent 80%,
                                             grey 80%);
 
-    /* background-color: grey; */
 
     border-radius: 3%;
 }

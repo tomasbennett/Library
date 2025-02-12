@@ -25,14 +25,14 @@
 
 html,
 body{
-    /* --main-content-min-height: 80rem;
-    --main-content-min-width: 60rem; */
 
     font-size: 1.6rem;
     font-family: Papyrus, fantasy, sans-serif;
 
     width: 100dvw;
     height: 100dvh;
+
+    min-height: 78rem;
 
     min-width: 50rem;
     
@@ -226,8 +226,6 @@ main .home-container{
     padding: var(--home-container-padding);
 
     background: linear-gradient(to bottom right, darkgrey, rgb(31, 31, 31));
-
-    /* overflow: hidden; */
 
     position: relative;
 }
