@@ -6,8 +6,10 @@
     <title>Library</title>
 
     <link rel="stylesheet" href="./stylesheets/stylesheet.css">
-    <link rel="stylesheet" href="./stylesheets/stylesheet-functionality.css">
     <link rel="stylesheet" href="./stylesheets/book-item-stylesheet.css">
+    <link rel="stylesheet" href="./stylesheets/stylesheet-responsive.css">
+    <link rel="stylesheet" href="./stylesheets/stylesheet-functionality.css">
+    
     <link rel="icon" type="image/png" href="./images/books.png">
 
     <script defer src="./scripts/viewBox.js"></script>
@@ -21,9 +23,9 @@
 
 
     <dialog id="dialog">
-        <form method="dialog" class="book-edit">
-            
-            <button type="submit" id="exit-book-edit" class="close-modal">
+        <form method="dialog">
+
+            <button onmousedown="this.closest('#dialog').close();" type="submit" id="exit-book-edit" class="close-modal">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
             </button>
 
@@ -39,6 +41,11 @@
                 <textarea required placeholder="Enter the books description here..." name="description-input" id="description-input"></textarea>
             </label>
 
+            <label class="prev-read">
+                <p class="prev-read-description">Have you completed this book?</p>
+                <input type="checkbox" id="prev-read-input" name="prev-read-input" role="slider">
+            </label>
+
             <button type="submit" class="close-modal" id="submit-book-edit">Submit</button>
 
         </form>
@@ -50,9 +57,10 @@
         <div class="upper-image-container">
             <h2 id="library-title" class="upper-image-title">Library</h2>
             
-            <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
             <svg
+                xmlns="http://www.w3.org/2000/svg"
+                onmousedown="document.getElementById('dialog').showModal();"
                 id="add-book"
                 preserveAspectRatio="xMidYMid meet"
                 <g id="g4">

@@ -1,18 +1,9 @@
 :root{
     font-size: 62.5%;
 
-    --light-colour: #ffffff;
-    --dark-colour: #0f0f11;
+    /* --books-li-min-width: 23rem; */
 
-    --books-li-min-width: 23rem;
-
-    --book-li-bcg: #dbd9c9;
-
-    --book-li-border-radius: 2%;
-
-
-
-
+    
 }
 
 *,
@@ -25,6 +16,11 @@
 
 html,
 body{
+    --light-colour: #ffffff;
+    --dark-colour: #0f0f11;
+
+    --book-li-bcg: #dbd9c9;
+
 
     font-size: 1.6rem;
     font-family: Papyrus, fantasy, sans-serif;
@@ -32,17 +28,17 @@ body{
     width: 100dvw;
     height: 100dvh;
 
-    min-height: 78rem;
+    color: black;
 
-    min-width: 50rem;
-    
-
-    color: white;
+    /* min-width: 50rem;
+    min-height: 78rem; */
 
     display: flex;
     flex-direction: column;
 
     overflow: auto;
+
+    /* overflow: auto; */
 }
 
 header{
@@ -54,6 +50,8 @@ header{
     --header-title-font-weight: 550;
 
     flex-shrink: 0;
+
+    color: white;
 
     height: var(--header-container-height);
 
@@ -74,64 +72,94 @@ header{
 
 }
 
+
+
+
+
+
+
+
+
+
 main{
-    flex-grow: 1;
-    flex-shrink: 0;
+    --home-container-shadow-size: 1rem;
+
+    flex: 1;
 
     height: 0;
-    width: 100%;
-
-
 
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(0, 1fr)
-                        minmax(0, 1.8fr);
-
-
+    grid-template-columns: 1fr;
+    grid-template-rows: auto
+                        minmax(auto, 1fr);
 
     position: relative;
     z-index: 0;
 }
 
 main .upper-image-container{
+    --upper-image-row-gap: 2rem;
+
+    --upper-image-padding: 2rem;
+
     --upper-image-font-size-title: 10rem;
     --upper-image-font-weight-title: 700;
-    flex-grow: 0;
-    flex-shrink: 1;
-    flex-basis: auto;
+
+    --upper-image-width-add-book: 30rem;
+    --upper-image-asp-ratio-add-book: 3.75;
 
     grid-area: 1 / 1 / 1 / 1;
-
-    width: 100%;
-    height: 100%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    row-gap: 2rem;
+    row-gap: var(--upper-image-row-gap);
 
-    color: black;
+    padding: var(--upper-image-padding);
 
     background-image: url(../images/background-bookshelf.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center 30%;
 
-    overflow: hidden;
+    position: relative;
 
-    z-index: -1;
+    /* overflow: hidden; */
+
+    /* z-index: -1; */
 }
 
+
+
+main .upper-image-container::after{
+    content: '';
+
+    position: absolute;
+    bottom: calc(var(--home-container-shadow-size) * -1);
+    left: 0;
+
+    width: 100%;
+    height: var(--home-container-shadow-size); /* These two will need to switch as well */
+
+    background: linear-gradient(to bottom, rgb(53, 53, 53), transparent);
+}
+
+
+
 main .upper-image-container .upper-image-title{
+    --text-shadow-colour: rgba(111, 111, 111, 1);
+
     flex-shrink: 0;
 
     font-size: var(--upper-image-font-size-title);
     font-weight: var(--upper-image-font-weight-title);
 
-    text-shadow: 1rem 1rem 1rem rgba(111, 111, 111, 1);
+    text-shadow: calc(var(--upper-image-font-size-title) / 10) 
+                 calc(var(--upper-image-font-size-title) / 10)
+                 calc(var(--upper-image-font-size-title) / 10)
+                 var(--text-shadow-colour);
 }
 
 main .upper-image-container #add-book{
@@ -139,18 +167,17 @@ main .upper-image-container #add-book{
 
     flex-shrink: 0;
 
-    width: 30rem;
-    height: 8rem;
+    width: var(--upper-image-width-add-book);
+    aspect-ratio: var(--upper-image-asp-ratio-add-book);
 
-    filter: drop-shadow(.4rem .4rem 1rem var(--drop-shadow-colour)) 
-            drop-shadow(.4rem .4rem 1.5rem var(--drop-shadow-colour))
-            drop-shadow(.4rem .4rem 2rem var(--drop-shadow-colour));
+    filter: drop-shadow(calc(var(--upper-image-width-add-book) / 75) calc(var(--upper-image-width-add-book) / 75) calc(var(--upper-image-width-add-book) / 30) var(--drop-shadow-colour)) 
+            drop-shadow(calc(var(--upper-image-width-add-book) / 75) calc(var(--upper-image-width-add-book) / 75) calc(var(--upper-image-width-add-book) / 20) var(--drop-shadow-colour))
+            drop-shadow(calc(var(--upper-image-width-add-book) / 75) calc(var(--upper-image-width-add-book) / 75) calc(var(--upper-image-width-add-book) / 15) var(--drop-shadow-colour));
 
     cursor: pointer;
-    user-select: none;
+    user-select: none; /* Doesn't highlight the text element */
 
-
-
+    transition: transform 100ms linear;
 
     & path{
         fill: var(--dark-colour);
@@ -165,13 +192,7 @@ main .upper-image-container #add-book{
         transition: fill 200ms linear,
                     stroke 200ms linear;
     }
-
-
-    transition: transform 100ms linear;
 }
-
-
-
 
 main .upper-image-container #add-book:active{
     transform: scale(92%);
@@ -204,11 +225,11 @@ main .upper-image-container #add-book:active{
 
 
 
-main .home-container{
-    --home-container-shadow-height: 1rem;
 
-    --home-container-padding: max(2.5rem, var(--home-container-shadow-height))
-                              3rem;
+main .home-container{
+
+    --home-container-padding: max(2.5rem, var(--home-container-shadow-size))
+                              3rem; /* Will need switching in terms of padding  from vertical to horizontal */
 
     
 
@@ -218,143 +239,171 @@ main .home-container{
     align-items: flex-start;
     justify-content: center;
 
-    height: 100%;
-    width: 100%;
-
-    min-height: auto;
+    /* min-height: auto; */
 
     padding: var(--home-container-padding);
 
     background: linear-gradient(to bottom right, darkgrey, rgb(31, 31, 31));
 
-    position: relative;
+    /* position: relative; */
+
+    /* */
+
+    /* overflow-y: auto; */
 }
-
-main .home-container::before{
-    content: '';
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: var(--home-container-shadow-height);
-
-    background: linear-gradient(to bottom, rgb(53, 53, 53), transparent);
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 main ul.books-container{
+    --book-item-width: 23rem;
+
+    --ul-books-container-row-gap: 3rem;
+    --ul-books-container-column-gap: 3rem;
+
+    --ul-books-container-padding: 3rem;
+
     list-style-type: none;
 
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--books-li-min-width), 1fr)); */
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--books-li-min-width), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(var(--book-item-width), 1fr));
 
-    gap: 3rem;
+    row-gap: var(--ul-books-container-row-gap);
+    column-gap: var(--ul-books-container-column-gap);
 
-    overflow: auto;
+    /* overflow: auto; */
 
-    padding: 3rem 3rem;
+    padding: var(--ul-books-container-padding);
 
     border: .2rem var(--light-colour) solid;
     border-radius: .6rem;
-
-    height: 100%;
-    width: auto;
 
     max-width: 100%;
 }
 
 
+main ul.books-container[empty]{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/* Book Item styling */
+
+
+
+
+
 ul.books-container .book-item{
-    --books-padding: 2rem;
+    
+    --book-item-min-height: 41.5rem;
+
+    --book-item-row-gap: 1.8rem;
+
+    --book-item-padding: 2rem; /* Used to be 2rem */
+
+    --book-item-border-radius: 2%;
 
     flex-shrink: 0;
 
-    box-shadow: 2rem 2rem 2rem rgb(43, 43, 43),
-                inset 0rem calc(-1 * var(--books-padding)) 4rem rgba(12, 12, 12, 0.3);
+    box-shadow: calc(var(--book-item-width) / 11) calc(var(--book-item-width) / 11) calc(var(--book-item-width) / 11) rgb(43, 43, 43),
+                inset 0rem calc(-1 * var(--book-item-padding)) calc(var(--book-item-padding) * 2) rgba(12, 12, 12, 0.3);
 
-    width: var(--books-li-min-width);
+    width: var(--book-item-width);
     height: auto;
 
-    border-radius: var(--book-li-border-radius);
+    min-height: var(--book-item-min-height);
+
+    padding: var(--book-item-padding);
+
+    border-radius: var(--book-item-border-radius);
     
-
     background-color: var(--book-li-bcg);
-    color: black;
-
-    padding: var(--books-padding);
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
 
-    row-gap: 1.8rem;
+    row-gap: var(--book-item-row-gap);
 
     text-align: center;
 }
 
 ul.books-container .book-item .book-title{
-    font-size: 2rem;
-    font-weight: 700;
+    --book-item-font-size-title: 2rem;
+    --book-item-font-weight-title: 700;
+
+    flex-shrink: 0;
+
+    font-size: var(--book-item-font-size-title);
+    font-weight: var(--book-item-font-weight-title);
+}
+
+ul.books-container .book-item .book-description{
+    flex-shrink: 0;
+
+    /* vertical-align: text-top; */
 }
 
 ul.books-container .book-item .book-buttons-container{
+    --book-item-asp-ratio-button-container: 5;
+
+    flex-shrink: 0;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     width: 100%;
-    height: 3.8rem;
+    aspect-ratio: var(--book-item-asp-ratio-button-container);
+
+
+    /* height: 3.8rem; */
 }
 
-.book-buttons-container button{
+ul.books-container .book-item .book-buttons-container button{
+    --book-item-padding-buttons: .4rem;
+
+    flex-shrink: 0;
+
     height: 100%;
     aspect-ratio: 1;
 
-    padding: .4rem;
+    padding: var(--book-item-padding-buttons);
 
     border: 0;
     border-radius: .5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     background-color: transparent;
 
     cursor: pointer;
 
-    
-}
-
-button:has(svg){
     transition: background-color 100ms linear;
+
+    & svg{
+        fill: rgb(73, 73, 73);
+
+        transition: fill 100ms linear;
+    }
 }
 
 
-button svg{
-    fill: rgb(73, 73, 73);
 
-    transition: fill 100ms linear;
-}
+ul.books-container .book-item .image-container{
+    --book-item-asp-ratio-image-container: 0.95;
 
-
-
-.image-container{
     flex-shrink: 0;
     flex-grow: 0;
 
     width: 100%;
-    height: 20rem;
+    aspect-ratio: var(--book-item-asp-ratio-image-container);
+    /* height: 20rem; */
 
     display: flex;
     align-items: center;
@@ -364,17 +413,18 @@ button svg{
 }
 
 
-.book-image{
+ul.books-container .book-item .image-container .book-image{
     width: 100%;
     height: 100%;
 
     object-fit: contain;
+    object-position: center;
 
-    filter: drop-shadow(1rem 1rem 2rem rgba(0, 0, 0, 1));
+    filter: drop-shadow(calc(var(--book-item-width) / 23) calc(var(--book-item-width) / 23) calc(var(--book-item-width) / 11.5) rgba(0, 0, 0, 1));
 }
 
 #light-blue{
-    transform: scale(0.85);
+    transform: scale(0.75);
 }
 
 #brown-sealed{

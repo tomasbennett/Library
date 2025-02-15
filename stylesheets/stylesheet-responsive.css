@@ -1,0 +1,25 @@
+/* @media (aspect-ratio >= 1.73){
+
+    body{
+        min-width: 77.5rem;
+        min-height: 60rem;
+    }
+
+    main{
+        grid-template-columns: minmax(38.5rem, 1fr)
+                               minmax(0, 1.8fr);
+        grid-template-rows: minmax(0, 1fr);
+
+        min-height: 44rem;
+    }
+
+    main .upper-image-container{
+        grid-area: 1 / 1 / 2 / 1;
+    }
+
+    main .home-container{
+        grid-area: 1 / 2 / 2 / 2;
+    }
+
+
+} */

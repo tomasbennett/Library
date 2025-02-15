@@ -1,143 +1,162 @@
 dialog{
-    
+    --dialog-width: 40rem;
+    --dialog-height: 80rem;
 
     border: 0;
+    border-radius: .6rem;
 
     top: 50%;
     left: 50%;
     translate: -50% -50%;
 
+    width: var(--dialog-width);
+    height: var(--dialog-height);
+
     background-color: transparent;
 
-    border-radius: var(--book-li-border-radius);
-
-    overflow-y: auto;
-
-    max-height: 80dvh;
-
-    box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.8),
-                0 0 3rem rgba(0, 0, 0, 0.8),
-                0 0 4rem rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 calc(var(--dialog-width) / 16) rgba(0, 0, 0, 0.8),
+                0 0 calc(var(--dialog-width) / 13.3) rgba(0, 0, 0, 0.8),
+                0 0 calc(var(--dialog-width) / 10) rgba(0, 0, 0, 0.8);
 }
 
 dialog::backdrop{
     background-color: rgba(111, 111, 111, 0.6);
 }
 
-dialog button{
+/* dialog button{
     border: 0;
     background-color: transparent;
 
     cursor: pointer;
-}
+} */
 
-#dialog textarea{
-    resize: vertical;
-}
+dialog form{
+    --dialog-padding-form: 2.5rem;
 
+    --dialog-row-gap-form: 2rem;
 
+    --dialog-padding-label: .4rem;
+    --dialog-padding-left-input-text: .5rem;
 
-
-
-
-#dialog form.book-edit{
-    --book-edit-padding: 2.2rem;
-
-    --book-edit-row-gap: 2rem;
-
-    width: calc(var(--books-li-min-width) * 1.3);
-    aspect-ratio: 1 / 2;
-
-    border-radius: var(--book-li-border-radius);
+    width: 100%;
+    height: 100%;
     
     background-color: var(--book-li-bcg);
 
-    padding: var(--book-edit-padding);
+    padding: var(--dialog-padding-form);
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
 
-    row-gap: var(--book-edit-row-gap);
+    row-gap: var(--dialog-row-gap-form);
 
-    box-shadow: inset 0rem calc(-1 * var(--book-edit-padding)) 4rem rgba(12, 12, 12, 0.3);
-
-
-    
+    box-shadow: inset 0 
+                      calc(-1 * var(--dialog-padding-form)) 
+                      calc(var(--dialog-padding-form) * 2) 
+                      rgba(12, 12, 12, 0.3);
 
 }
 
-#dialog form.book-edit > *{
+dialog #exit-book-edit{
+    --dialog-height-exit-button: 3.2rem;
+
     flex-shrink: 0;
-}
 
-#dialog #exit-book-edit{
-    margin-left: auto;
+    background-color: transparent;
 
-    height: 3.5rem;
+    height: var(--dialog-height-exit-button);
     aspect-ratio: 1;
 
-    padding: .4rem;
+    margin: 0 0 auto auto;
+
+    /* padding: .4rem; */
 
     border-radius: 50%;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    cursor: pointer;
 }
 
-@media(hover: hover){
-    #dialog #exit-book-edit:hover{
-        background-color: rgba(253, 0, 0, 0.8);
 
-        & svg{
-            fill: white;
-        }
-    }
-}   
+dialog .image-container{
+    --dialog-asp-ratio-image-container: 0.95;
 
-#dialog .title-label{
+    flex-shrink: 0;
+
+    width: 90%;
+    aspect-ratio: var(--dialog-asp-ratio-image-container);
+
+    margin: auto;
+
+    overflow: hidden;
+}
+
+dialog .image-container img{
     width: 100%;
-    height: 6rem;
+    height: 100%;
 
-    padding: .4rem;
+    object-fit: cover;
+    object-position: center;
 }
 
-#dialog .description-label{
+
+
+dialog .title-label{
+    --dialog-height-title: 6rem;
+    
+    flex-shrink: 0;
+
+    width: 100%;
+    height: var(--dialog-height-title);
+
+    padding: var(--dialog-padding-label);
+}
+
+dialog .description-label{
+    --dialog-min-height-description: 14rem;
+
+    flex-shrink: 0;
+
     width: 100%;
 
-    min-height: 14rem;
+    min-height: var(--dialog-min-height-description);
 
-    padding: .4rem;
+    padding: var(--dialog-padding-label);
 }
 
-#dialog .title-label,
-#dialog .description-label{
+dialog .title-label,
+dialog .description-label{
     background: linear-gradient(to bottom, grey 20%,
                                             transparent 20%,
                                             transparent 80%,
                                             grey 80%);
-
-
-    border-radius: 3%;
 }
 
-#dialog input,
-#dialog textarea{
+
+
+dialog #title-input,
+dialog #description-input{
+    --dialog-font-size-input-text: 1.4rem;
+
     width: 100%;
+    height: 100%;
+
     min-height: 100%;
 
     background-color: var(--book-li-bcg);
-    color: black;
 
-    border-radius: inherit;
+    font-size: var(--dialog-font-size-input-text);
 
-    font-size: 1.4rem;
-
-    padding-left: .5rem;
+    padding-left: var(--dialog-padding-left-input-text);
 
     border: 0;
+
+    resize: vertical;
 
     &::placeholder{
         color: black;
@@ -146,9 +165,81 @@ dialog button{
     }
 }
 
-#dialog #submit-book-edit{
+
+
+dialog .prev-read{
+    --dialog-height-prev-read-input: 2.8rem;
+
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: var(--dialog-height-prev-read-input);
+
+    min-height: auto;
+
+}
+
+dialog .prev-read #prev-read-input{
+    height: 100%;
+    aspect-ratio: 1;
+
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dialog #submit-book-edit{
+    --dialog-padding-submit-button: .8rem;
+
+    --dialog-font-weight-submit-button: 770;
+
+
     font-size: large;
-    font-weight: 770;
+    font-weight: var(--dialog-font-weight-submit-button);
+
+    border: 0;
+    border-radius: .4rem;
+
+    padding: var(--dialog-padding-submit-button);
+
+    background-color: transparent;
+
+    cursor: pointer;
+
+    user-select: none;
 
     font-family: Papyrus, fantasy, sans-serif;
 }
+
+
