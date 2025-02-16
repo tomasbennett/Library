@@ -1,6 +1,6 @@
 dialog{
     --dialog-width: 40rem;
-    --dialog-height: 80rem;
+    --dialog-asp-ratio: 1 / 2;
 
     border: 0;
     border-radius: .6rem;
@@ -10,25 +10,23 @@ dialog{
     translate: -50% -50%;
 
     width: var(--dialog-width);
-    height: var(--dialog-height);
+    aspect-ratio: var(--dialog-asp-ratio);
 
     background-color: transparent;
 
     box-shadow: 0 0 calc(var(--dialog-width) / 16) rgba(0, 0, 0, 0.8),
                 0 0 calc(var(--dialog-width) / 13.3) rgba(0, 0, 0, 0.8),
                 0 0 calc(var(--dialog-width) / 10) rgba(0, 0, 0, 0.8);
+
+
+    /* scrollbar-gutter: stable; */
+    
+    
 }
 
 dialog::backdrop{
     background-color: rgba(111, 111, 111, 0.6);
 }
-
-/* dialog button{
-    border: 0;
-    background-color: transparent;
-
-    cursor: pointer;
-} */
 
 dialog form{
     --dialog-padding-form: 2.5rem;
@@ -39,7 +37,9 @@ dialog form{
     --dialog-padding-left-input-text: .5rem;
 
     width: 100%;
-    height: 100%;
+    height: max-content;
+
+    min-height: 100%;
     
     background-color: var(--book-li-bcg);
 
@@ -56,6 +56,10 @@ dialog form{
                       calc(-1 * var(--dialog-padding-form)) 
                       calc(var(--dialog-padding-form) * 2) 
                       rgba(12, 12, 12, 0.3);
+
+    overflow-y: auto;
+    
+    
 
 }
 
@@ -100,7 +104,7 @@ dialog .image-container img{
     width: 100%;
     height: 100%;
 
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
 }
 
@@ -121,10 +125,16 @@ dialog .description-label{
     --dialog-min-height-description: 14rem;
 
     flex-shrink: 0;
+    flex-grow: 0;
+
+    display: flex;
+
 
     width: 100%;
 
     min-height: var(--dialog-min-height-description);
+
+    
 
     padding: var(--dialog-padding-label);
 }
@@ -136,8 +146,6 @@ dialog .description-label{
                                             transparent 80%,
                                             grey 80%);
 }
-
-
 
 dialog #title-input,
 dialog #description-input{
@@ -158,16 +166,23 @@ dialog #description-input{
 
     resize: vertical;
 
+    color: black;
+    font-family: Papyrus, fantasy, sans-serif;
+
     &::placeholder{
         color: black;
-
         font-family: Papyrus, fantasy, sans-serif;
     }
 }
 
+dialog #description-input{
+    min-height: var(--dialog-min-height-description);
 
 
-dialog .prev-read{
+}
+
+
+dialog .prev-read-input-container{
     --dialog-height-prev-read-input: 2.8rem;
 
     flex-shrink: 0;
@@ -184,11 +199,8 @@ dialog .prev-read{
 
 }
 
-dialog .prev-read #prev-read-input{
-    height: 100%;
-    aspect-ratio: 1;
-
-    cursor: pointer;
+dialog .prev-read-input-container .prev-read-input-description{
+    flex-shrink: 0;
 }
 
 
@@ -197,6 +209,66 @@ dialog .prev-read #prev-read-input{
 
 
 
+
+
+dialog .prev-read-input-container .prev-read-input-label{
+    --prev-read-input-label-asp-ratio: 2.2;
+
+    flex-shrink: 0;
+
+    height: 100%;
+    aspect-ratio: var(--prev-read-input-label-asp-ratio);
+
+    background-color: var(--dark-colour);
+
+    border: .1rem var(--light-colour) solid;
+    border-radius: 6rem;
+
+    cursor: pointer;
+
+    position: relative;
+
+    transition: background-color 200ms linear;
+}
+
+dialog .prev-read-input-container .prev-read-input-label:has(#prev-read-input:checked){
+    background-color: rgb(0, 209, 0);
+}
+
+
+dialog .prev-read-input-container .prev-read-input-label::before{
+    --prev-read-input-left-slider-off: 4%;
+    --prev-read-input-left-slider-on: calc(63% - var(--prev-read-input-left-slider-off));
+
+    content: '';
+
+    height: 80%;
+    aspect-ratio: 1;
+
+    background-color: white;
+
+    border-radius: 50%;
+    
+    position: absolute;
+
+    top: 50%;
+    left: var(--prev-read-input-left-slider-off);
+
+    transform: translateY(-50%);
+
+    transition: left 200ms linear;
+
+}
+
+dialog .prev-read-input-container .prev-read-input-label:has(#prev-read-input:checked)::before{
+    left: var(--prev-read-input-left-slider-on);
+}
+
+
+
+dialog .prev-read-input-container .prev-read-input-label #prev-read-input{
+    display: none;
+}
 
 
 
