@@ -8,3 +8,4 @@ export const svgRightArrow = document.getElementById('right-arrow-svg');
 
 export const dialogForm = document.getElementById('dialog-form');
 export const dialogFormSubmitBtn = document.getElementById('submit-book-edit');
+export const booksContainer = document.getElementById('books-container');
