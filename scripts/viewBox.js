@@ -1,5 +1,6 @@
-const svg = document.getElementById('add-book');
-const path = document.getElementById('path6');
+import {svgAddBook as svg, pathAddBook as path} from "./domElements.js";
+
+
 
 const bbox = path.getBBox();
 

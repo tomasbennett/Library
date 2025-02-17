@@ -87,26 +87,137 @@ dialog #exit-book-edit{
 }
 
 
-dialog .image-container{
-    --dialog-asp-ratio-image-container: 0.95;
+dialog .svg-book-image-container{
+    --dialog-asp-ratio-svg-image-container: 0.95;
+
+    --image-container-height-svg: 4rem;
 
     flex-shrink: 0;
 
     width: 90%;
-    aspect-ratio: var(--dialog-asp-ratio-image-container);
+    aspect-ratio: var(--dialog-asp-ratio-svg-image-container);
 
     margin: auto;
 
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* overflow-x: visible; */
+    /* overflow-y: hidden; */
+
+    position: relative;
 }
 
-dialog .image-container img{
+dialog .svg-book-image-container svg{
+    height: var(--image-container-height-svg);
+    aspect-ratio: 1;
+
+    background-color: var(--book-li-bcg);
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: 50%;
+
+    translate: 0 -50%;
+
+    cursor: pointer;
+
+    transition: transform 300ms linear;
+}
+
+
+dialog .svg-book-image-container svg#left-arrow-svg{
+    left: 0;
+}
+
+
+dialog .svg-book-image-container svg#right-arrow-svg{
+    right: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dialog .svg-book-image-container .image-container{
+    width: 90%;
+    aspect-ratio: var(--dialog-asp-ratio-svg-image-container);
+
+    /* display: flex; */
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+dialog .svg-book-image-container .image-container img{
     width: 100%;
     height: 100%;
 
     object-fit: contain;
     object-position: center;
+
+    position: absolute;
+
+    top: 50%;
+    translate: 0 -50%;
+
+    user-select: none;
+
+    transition: left 400ms ease-out,
+                right 400ms ease-out;
 }
+
+dialog .svg-book-image-container .image-container img:nth-of-type(1){
+    right: 200%;
+    left: -200%;
+}
+
+dialog .svg-book-image-container .image-container img:nth-of-type(2){
+    right: 100%;
+    left: -100%;
+
+}
+
+dialog .svg-book-image-container .image-container img:nth-of-type(3){
+    left: 0;
+    right: 0;
+}
+
+dialog .svg-book-image-container .image-container img:nth-of-type(4){
+    right: -100%;
+    left: 100%;
+}
+
+dialog .svg-book-image-container .image-container img:nth-of-type(5){
+    right: -200%;
+    left: 200%;
+}
+
+
+
+
+
 
 
 
@@ -166,6 +277,8 @@ dialog #description-input{
 
     resize: vertical;
 
+    user-select: none;
+
     color: black;
     font-family: Papyrus, fantasy, sans-serif;
 
@@ -177,8 +290,6 @@ dialog #description-input{
 
 dialog #description-input{
     min-height: var(--dialog-min-height-description);
-
-
 }
 
 

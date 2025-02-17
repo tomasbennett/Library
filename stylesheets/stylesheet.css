@@ -530,15 +530,15 @@ ul.books-container .book-item .image-container .book-image{
     filter: drop-shadow(calc(var(--book-item-width) / 23) calc(var(--book-item-width) / 23) calc(var(--book-item-width) / 11.5) rgba(0, 0, 0, 1));
 }
 
-#light-blue{
+.book-image.light-blue{
     transform: scale(0.75);
 }
 
-#brown-sealed{
+.book-image.brown-sealed{
     transform: scale(0.9);
 }
 
-#dark-blue{
+.book-image.dark-blue{
     transform: scale(1.15);
 }
 

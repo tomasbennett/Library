@@ -41,6 +41,10 @@
         background-color: rgba(111, 111, 111, 0.3);
     }
 
+    dialog .svg-book-image-container svg:hover{
+        transform: scale(1.2);
+    }
+
 
 
 }
