@@ -25,7 +25,7 @@
 
 
     <dialog id="dialog">
-        <form method="dialog">
+        <form method="dialog" id="dialog-form">
 
             <button onmousedown="this.closest('#dialog').close();" type="submit" id="exit-book-edit" class="close-modal">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
@@ -48,18 +48,12 @@
             </div>
 
 
-
-
-
-
-
-
             <label class="title-label">
-                <input required placeholder="Enter book title here..." type="text" name="title-input" id="title-input">
+                <input minlength="1" maxlength="40" required placeholder="Enter book title here..." type="text" name="title-input" id="title-input">
             </label>
 
             <label class="description-label">
-                <textarea required placeholder="Enter the books description here..." name="description-input" id="description-input"></textarea>
+                <textarea minlength="1" maxlength="300" required placeholder="Enter the books description here..." name="description-input" id="description-input"></textarea>
             </label>
 
             <div class="prev-read-input-container">
@@ -123,7 +117,7 @@
                         </p>
 
                         <label class="prev-read-outcome-label">
-                            <input class="slider" type="checkbox" id="prev-read-outcome" name="prev-read-outcome" role="slider">
+                            <input class="slider prev-read-outcome" type="checkbox" role="slider">
                         </label>
 
                     </div>
@@ -157,7 +151,7 @@
                         </p>
 
                         <label class="prev-read-outcome-label">
-                            <input class="slider" type="checkbox" id="prev-read-outcome" name="prev-read-outcome" role="slider">
+                            <input class="slider prev-read-outcome" type="checkbox" role="slider">
                         </label>
                         
                     </div>
@@ -191,7 +185,7 @@
                         </p>
 
                         <label class="prev-read-outcome-label">
-                            <input class="slider" type="checkbox" id="prev-read-outcome" name="prev-read-outcome" role="slider">
+                            <input class="slider prev-read-outcome" type="checkbox" role="slider">
                         </label>
                         
                     </div>
@@ -225,7 +219,7 @@
                         </p>
 
                         <label class="prev-read-outcome-label">
-                            <input class="slider" type="checkbox" id="prev-read-outcome" name="prev-read-outcome" role="slider">
+                            <input class="slider prev-read-outcome" type="checkbox" role="slider">
                         </label>
                         
                     </div>
@@ -259,7 +253,7 @@
                         </p>
 
                         <label class="prev-read-outcome-label">
-                            <input class="slider" type="checkbox" id="prev-read-outcome" name="prev-read-outcome" role="slider">
+                            <input class="slider prev-read-outcome" type="checkbox" role="slider">
                         </label>
                         
                     </div>

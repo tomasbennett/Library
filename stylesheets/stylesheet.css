@@ -395,14 +395,14 @@ ul.books-container .book-item .prev-read-outcome-container .prev-read-outcome-la
     transition: background-color 200ms linear;
 }
 
-ul.books-container .book-item .prev-read-outcome-container .prev-read-outcome-label:has(#prev-read-outcome:checked){
+ul.books-container .book-item .prev-read-outcome-container .prev-read-outcome-label:has(.prev-read-outcome:checked){
     background-color: rgb(0, 209, 0);
 }
 
 
 ul.books-container .book-item .prev-read-outcome-container .prev-read-outcome-label::before{
     --prev-read-outcome-left-slider-off: 4%;
-    --prev-read-outcome-left-slider-on: calc(63% - var(--prev-read-outcome-left-slider-off));
+    --prev-read-outcome-left-slider-on: calc(64% - var(--prev-read-outcome-left-slider-off));
 
     content: '';
 
@@ -424,13 +424,13 @@ ul.books-container .book-item .prev-read-outcome-container .prev-read-outcome-la
 
 }
 
-ul.books-container .book-item .prev-read-outcome-container .prev-read-outcome-label:has(#prev-read-outcome:checked)::before{
+ul.books-container .book-item .prev-read-outcome-container .prev-read-outcome-label:has(.prev-read-outcome:checked)::before{
     left: var(--prev-read-outcome-left-slider-on);
 }
 
 
 
-ul.books-container .book-item .prev-read-outcome-container .prev-read-outcome-label #prev-read-outcome{
+ul.books-container .book-item .prev-read-outcome-container .prev-read-outcome-label .prev-read-outcome{
     display: none;
 }
 

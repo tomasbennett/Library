@@ -84,6 +84,8 @@ dialog #exit-book-edit{
     justify-content: center;
 
     cursor: pointer;
+
+    transition: background-color 200ms linear;
 }
 
 
@@ -171,6 +173,8 @@ dialog .svg-book-image-container .image-container{
 }
 
 dialog .svg-book-image-container .image-container img{
+
+
     width: 100%;
     height: 100%;
 
@@ -183,6 +187,8 @@ dialog .svg-book-image-container .image-container img{
     translate: 0 -50%;
 
     user-select: none;
+
+    filter: drop-shadow(.8rem .8rem 1rem rgba(0, 0, 0, 1));
 
     transition: left 400ms ease-out,
                 right 400ms ease-out;
@@ -296,12 +302,16 @@ dialog #description-input{
 dialog .prev-read-input-container{
     --dialog-height-prev-read-input: 2.8rem;
 
+    --dialog-column-gap-prev-read-input: 2rem;
+
     flex-shrink: 0;
     flex-grow: 0;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    column-gap: var(--dialog-column-gap-prev-read-input);
 
     width: 100%;
     height: var(--dialog-height-prev-read-input);
@@ -343,13 +353,13 @@ dialog .prev-read-input-container .prev-read-input-label{
 }
 
 dialog .prev-read-input-container .prev-read-input-label:has(#prev-read-input:checked){
-    background-color: rgb(0, 209, 0);
+    background-color: rgb(0, 194, 0);
 }
 
 
 dialog .prev-read-input-container .prev-read-input-label::before{
     --prev-read-input-left-slider-off: 4%;
-    --prev-read-input-left-slider-on: calc(63% - var(--prev-read-input-left-slider-off));
+    --prev-read-input-left-slider-on: calc(64% - var(--prev-read-input-left-slider-off));
 
     content: '';
 
