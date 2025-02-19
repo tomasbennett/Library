@@ -12,7 +12,7 @@ function BookInfo(formObject, imgIndex, imgArray){
 
 Object.defineProperty(BookInfo.prototype, "imgFilePath", {
     get : function(){
-        return "../images/book-images/" + this._bookImg + ".png";
+        return "./images/book-images/" + this._bookImg + ".png";
     }
 });
 
