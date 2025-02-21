@@ -1,3 +1,5 @@
+import { imageContainer as container, svgLeftArrow as left, svgRightArrow as right } from "./domElements.js";
+
 function InfiniteCarousel(container, minIndex, maxIndex){
     this._container = container;
 
@@ -46,11 +48,13 @@ InfiniteCarousel.prototype.movement = function(dir) {
     }
 };
 
-import { imageContainer as container, svgLeftArrow as left, svgRightArrow as right } from "./domElements.js";
+InfiniteCarousel.prototype.getCurrentImgIndex = function(){
+    return this.currentImgIndex;
+}
 
 const imgContainerCarousel = new InfiniteCarousel(container, 0, 4);
-export const imgCarouselIndex = () => imgContainerCarousel.currentImgIndex;
-
 
 left.addEventListener('click', imgContainerCarousel.movement.bind(imgContainerCarousel, "left"));
 right.addEventListener('click', imgContainerCarousel.movement.bind(imgContainerCarousel, "right"));
+
+export const imgIndex = imgContainerCarousel.getCurrentImgIndex.bind(imgContainerCarousel);
