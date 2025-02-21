@@ -402,7 +402,7 @@ ul.books-container .book-item .prev-read-outcome-container .prev-read-outcome-la
 
 ul.books-container .book-item .prev-read-outcome-container .prev-read-outcome-label::before{
     --prev-read-outcome-left-slider-off: 4%;
-    --prev-read-outcome-left-slider-on: calc(64% - var(--prev-read-outcome-left-slider-off));
+    --prev-read-outcome-left-slider-on: calc(63% - var(--prev-read-outcome-left-slider-off));
 
     content: '';
 
