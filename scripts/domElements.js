@@ -7,6 +7,7 @@ export const dialogTitleInput = document.getElementById('title-input');
 export const dialogDescriptionInput = document.getElementById('description-input');
 export const dialogPrevReadInput = document.getElementById('prev-read-input');
 export const dialogFormSubmitBtn = document.getElementById('submit-book-edit');
+export const dialogFormCloseBtn = document.getElementById('exit-book-edit');
 
 export const imageContainer = document.getElementById('image-carousel-container');
 export const svgLeftArrow = document.getElementById('left-arrow-svg');

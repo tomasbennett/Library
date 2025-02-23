@@ -1,5 +1,5 @@
 import * as domElements from "./domElements.js";
-
+import InfiniteCarousel from "./infiniteCarousel.js";
 
 
 
@@ -25,72 +25,114 @@ function LocalStorageManipulation(){}
 
 
 
+Book.imgArrayFill = function(imgArray, imgCenter){
+    const arr = imgArray;
+    const length = arr.length;
+    const center = Math.floor(length / 2);
 
+    if(imgCenter === center){
+      return arr;
+    }else if(imgCenter < center){
+      const diff = center - imgCenter;
+      const lastElements = arr.splice(-diff);
+      return lastElements.concat(arr);
 
+    }else if(imgCenter > center){
+      const diff = imgCenter - center;
+      return arr.concat(arr.splice(0, diff));
 
+    }
+}
 
-function Book(id = LocalStorageManipulation.id++, bookTitle = "", bookDescription = "", prevRead = false){
+Book.imgTemplateArray = ["black-cover", "brown-cover-sealed", "brown-cover-unsealed", "dark-blue-cover", "light-blue-cover"];
+
+Book.imgFilePath = (img) => `./images/book-images/${img}.png`;
+
+function Book({"img-array": imgArray = Book.imgTemplateArray, "title-input": bookTitle = "", "description-input": bookDescription = "", "prev-read-input": prevRead = false} = {}, id = LocalStorageManipulation.id++){
+    this.imgArray = imgArray;
     this.id = id;
-
-
     
     this.bookTitle = bookTitle;
     this.bookDescription = bookDescription;
     this.prevRead = prevRead;
 
+    this.openModal(domElements.dialog, domElements.imageContainer, domElements.dialogTitleInput, domElements.dialogDescriptionInput, domElements.dialogPrevReadInput);
+}
+
+Book.prototype.openModal = function(dialog, imgContainer, dialogTitle, dialogDescription, dialogPrevRead){
+    dialog.showModal();
+
+    for(let i = 0; i < this.imgArray.length; i++){
+        const currImg = this.imgArray[i];
+
+        const img = document.createElement("img");
+        img.setAttribute("loading", "lazy");
+        img.setAttribute("alt", "Book Image");
+    
+        img.setAttribute("src", Book.imgFilePath(currImg));
+
+        img.classList.add("book-image", currImg);
+        imgContainer.appendChild(img);
+
+    }
+
+    dialogTitle.value = this.bookTitle;
+    dialogDescription.value = this.bookDescription;
+    dialogPrevRead.checked = this.prevRead;
+
+}
+
+Book.prototype.getImgArray = function(){
+    return this.imgArray;
+}
+
+Book.prototype.getID = function(){
+    return this.id;
+
 }
 
 
 
 
 
-function BookEdit(...args){
-    Book.apply(this, args);
 
-}
-
-BookEdit.prototype = Object.create(Book.prototype);
-
-BookEdit.prototype.openDialog = function(){
-    domElements.dialog.showModal();
-
-    domElements.dialogTitleInput.value = this.bookTitle;
-    domElements.dialogDescriptionInput.value = this.bookDescription;
-    domElements.dialogPrevReadInput.checked = this.prevRead;
-
-
+BookSubmit.removeImgContainerChildren = function(){
+    const container = domElements.imageContainer;
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
 }
 
 
+function BookSubmit(dataObj, id){
+    this.id = id;
 
-function BookSubmit(...args){
-    Book.apply(this, args);
+    this.bookTitle = dataObj["title-input"];
+    this.bookDescription = dataObj["description-input"];
+    this.bookPrevRead = dataObj["prev-read-input"];
+
+    this.imgArray = dataObj["img-array"];
 
 }
-
-BookSubmit.prototype = Object.create(Book.prototype);
 
 BookSubmit.prototype.printBook = function(){
-    const { id, ...obj } = this;
-    LocalStorageManipulation.set.call(obj, id);
-
-
     const li = document.createElement("li");
     li.classList.add("book-item");
+    li.id = this.id;
 
 
     const imageContainer = document.createElement("div");
     imageContainer.classList.add("image-container");
     li.appendChild(imageContainer);
 
-
+    const imgSet = this.imgArray[Math.floor(this.imgArray.length / 2)];
     const img = document.createElement("img");
     img.setAttribute("loading", "lazy");
     img.setAttribute("alt", "Book Image");
 
-    img.setAttribute("src", this.imgFilePath);
+    img.setAttribute("src", Book.imgFilePath(imgSet));
 
-    img.classList.add("book-image", this._bookImg);
+    img.classList.add("book-image", imgSet);
     imageContainer.appendChild(img);
 
     
@@ -102,7 +144,7 @@ BookSubmit.prototype.printBook = function(){
 
     const descP = document.createElement("p");
     descP.classList.add("book-description");
-    descP.innerText = this.bookDescritpion;
+    descP.innerText = this.bookDescription;
     li.appendChild(descP);
 
 
@@ -113,7 +155,7 @@ BookSubmit.prototype.printBook = function(){
 
     const readDesc = document.createElement("p");
     readDesc.classList.add("prev-read-outcome-description");
-    readDesc.textContent = this.prevRead ? "Read:" : "Not Finished:";
+    readDesc.textContent = this.bookPrevRead ? "Completed:" : "Not Finished:";
     prevReadContainer.appendChild(readDesc);
 
 
@@ -124,7 +166,8 @@ BookSubmit.prototype.printBook = function(){
     sliderInput.setAttribute("type", "checkbox");
     sliderInput.setAttribute("role", "slider");
 
-    sliderInput.checked = this.prevRead;
+    sliderInput.checked = this.bookPrevRead;
+    sliderInput.addEventListener("click", (e) => e.preventDefault());
 
     sliderLabel.appendChild(sliderInput);
     prevReadContainer.appendChild(sliderLabel);
@@ -177,13 +220,16 @@ BookSubmit.prototype.printBook = function(){
 }
 
 
-for(let i = 0; i < localStorage.length; i++){
-    const key = localStorage.key(i);
-    const value = LocalStorageManipulation.get(key);
-    
-    const bookItem = new BookSubmit(value);
-    bookItem.printBook();
 
+
+
+
+function BookRemoval(li){
+    this.li = li;
+}
+
+BookRemoval.prototype.removeFromHTML = function(){
+    this.li.remove();
 }
 
 
@@ -191,68 +237,93 @@ for(let i = 0; i < localStorage.length; i++){
 
 
 
+for(let i = 0; i < localStorage.length; i++){
+    const key = localStorage.key(i);
+    const value = LocalStorageManipulation.get(key);
+    
+    const bookItem = new BookSubmit(value, key);
+    bookItem.printBook();
+
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let bookId;
+let imgArray;
+let infiniteCarousel;
 
 document.addEventListener("click", function(e){
     const elem = e.target;
-    let book;
+    const li = elem.closest("li");
+    
+    if(elem && (elem.closest("edit-book-button") || elem.closest("#add-book"))){
+        
+        let book;
+        if(elem.closest("edit-book-button")){
+            const bookInfo = LocalStorageManipulation.get(li.id);
+            book = new Book(bookInfo, li.id);
 
-    if(elem){
-        if(elem.classList.contains("edit-book-button")){
-            const bookInfo = LocalStorageManipulation.get(elem.id);
+            const bookEditRemoved = new BookRemoval(li);
 
-            book = new BookEdit(bookInfo);
-
-
-
-        }else if(elem.id == addButton.id){
-            book = new BookEdit();
+        }else if(elem.closest("#add-book")){
+            book = new Book();
 
         }
-        book.openDialog();
+
+        infiniteCarousel = new InfiniteCarousel(domElements.imageContainer, 0, 4);
+        domElements.svgLeftArrow.onclick = infiniteCarousel.movement.bind(infiniteCarousel, "left");
+        domElements.svgRightArrow.onclick = infiniteCarousel.movement.bind(infiniteCarousel, "right");
+
+        imgArray = book.getImgArray();
+        bookId = book.getID();
+
+    }else if(elem && elem.closest("delete-book-button")){
+        const booksContainer = domElements.booksContainer;
+        
+        if(booksContainer.children.length == 0) booksContainer.setAttribute(empty, "");
+        
+        LocalStorageManipulation.delete(li.id);
+
+        const bookRemoved = new BookRemoval(li);
+        bookRemoved.removeFromHTML();
 
     }
+
+
 });
 
 
-form.addEventListener("submit", function(){
-    const bookSubmission = new BookSubmit();
+
+const dialog = domElements.dialog;
+const form = domElements.dialogForm;
+const closeBtn = domElements.dialogFormCloseBtn;
+
+form.addEventListener("submit", function(e){
+    BookSubmit.removeImgContainerChildren();
+
+    const formData = new FormData(e.target);
+    const formObject = Object.fromEntries(formData.entries());
+    formObject["prev-read-input"] ??= false;
+
+    const newArr = Book.imgArrayFill(imgArray, infiniteCarousel.getCurrentImgIndex());
+    formObject["img-array"] = newArr;
+
+    LocalStorageManipulation.set.call(formObject, bookId);
+    
+    const bookSubmission = new BookSubmit(formObject, bookId);
+    bookSubmission.printBook();
 
 
-})
+
+});
+
+closeBtn.addEventListener("click", function(){
+    dialog.close();
+
+    LocalStorageManipulation.id--;
+
+    BookSubmit.removeImgContainerChildren();
+
+
+
+});
+

@@ -388,11 +388,11 @@ ul.books-container .book-item .prev-read-outcome-container .prev-read-outcome-la
     border: .1rem var(--light-colour) solid;
     border-radius: 6rem;
 
-    cursor: pointer;
+    cursor: not-allowed;
 
     position: relative;
 
-    transition: background-color 200ms linear;
+    /* transition: background-color 200ms linear; */
 }
 
 ul.books-container .book-item .prev-read-outcome-container .prev-read-outcome-label:has(.prev-read-outcome:checked){
@@ -420,7 +420,7 @@ ul.books-container .book-item .prev-read-outcome-container .prev-read-outcome-la
 
     transform: translateY(-50%);
 
-    transition: left 200ms linear;
+    /* transition: left 200ms linear; */
 
 }
 
@@ -539,7 +539,7 @@ ul.books-container .book-item .image-container .book-image{
 }
 
 .book-image.dark-blue-cover{
-    transform: scale(1.15);
+    transform: scale(1.2);
 }
 
 
