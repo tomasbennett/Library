@@ -3,7 +3,18 @@ import InfiniteCarousel from "./infiniteCarousel.js";
 
 
 
-LocalStorageManipulation.id = 1;
+LocalStorageManipulation.id = function(){
+    if(!(Object.keys(localStorage).length > 0)){
+        return 1;
+    }
+    const keys = Object.keys(localStorage);
+    
+    const numericKeys = keys.map(Number);
+
+    let max = Math.max(...numericKeys);
+
+    return ++max;
+}
 
 LocalStorageManipulation.get = function(id){
     let obj = localStorage.getItem(id);
@@ -48,7 +59,7 @@ Book.imgTemplateArray = ["black-cover", "brown-cover-sealed", "brown-cover-unsea
 
 Book.imgFilePath = (img) => `./images/book-images/${img}.png`;
 
-function Book({"img-array": imgArray = Book.imgTemplateArray, "title-input": bookTitle = "", "description-input": bookDescription = "", "prev-read-input": prevRead = false} = {}, id = LocalStorageManipulation.id++){
+function Book({"img-array": imgArray = Book.imgTemplateArray, "title-input": bookTitle = "", "description-input": bookDescription = "", "prev-read-input": prevRead = false} = {}, id = LocalStorageManipulation.id()){
     this.imgArray = imgArray;
     this.id = id;
     
@@ -255,14 +266,15 @@ document.addEventListener("click", function(e){
     const elem = e.target;
     const li = elem.closest("li");
     
-    if(elem && (elem.closest("edit-book-button") || elem.closest("#add-book"))){
+    if(elem && (elem.closest(".edit-book-button") || elem.closest("#add-book"))){
         
         let book;
-        if(elem.closest("edit-book-button")){
+        if(elem.closest(".edit-book-button")){
             const bookInfo = LocalStorageManipulation.get(li.id);
             book = new Book(bookInfo, li.id);
 
             const bookEditRemoved = new BookRemoval(li);
+            bookEditRemoved.removeFromHTML();
 
         }else if(elem.closest("#add-book")){
             book = new Book();
@@ -276,7 +288,7 @@ document.addEventListener("click", function(e){
         imgArray = book.getImgArray();
         bookId = book.getID();
 
-    }else if(elem && elem.closest("delete-book-button")){
+    }else if(elem && elem.closest(".delete-book-button")){
         const booksContainer = domElements.booksContainer;
         
         if(booksContainer.children.length == 0) booksContainer.setAttribute(empty, "");
