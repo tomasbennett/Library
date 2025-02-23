@@ -37,7 +37,7 @@ function LocalStorageManipulation(){}
 
 
 Book.imgArrayFill = function(imgArray, imgCenter){
-    const arr = imgArray;
+    const arr = [...imgArray];
     const length = arr.length;
     const center = Math.floor(length / 2);
 
