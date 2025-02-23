@@ -5,15 +5,15 @@ import InfiniteCarousel from "./infiniteCarousel.js";
 
 LocalStorageManipulation.id = function(){
     if(!(Object.keys(localStorage).length > 0)){
-        return 1;
+        return "book1";
     }
     const keys = Object.keys(localStorage);
     
-    const numericKeys = keys.map(Number);
+    const numericKeys = keys.map(elem => Number(elem.replace(/^book/g, "")));
 
     let max = Math.max(...numericKeys);
 
-    return ++max;
+    return `book${++max}`;
 }
 
 LocalStorageManipulation.get = function(id){
@@ -241,6 +241,7 @@ function BookRemoval(li){
 
 BookRemoval.prototype.removeFromHTML = function(){
     this.li.remove();
+
 }
 
 
@@ -273,9 +274,6 @@ document.addEventListener("click", function(e){
             const bookInfo = LocalStorageManipulation.get(li.id);
             book = new Book(bookInfo, li.id);
 
-            const bookEditRemoved = new BookRemoval(li);
-            bookEditRemoved.removeFromHTML();
-
         }else if(elem.closest("#add-book")){
             book = new Book();
 
@@ -291,12 +289,14 @@ document.addEventListener("click", function(e){
     }else if(elem && elem.closest(".delete-book-button")){
         const booksContainer = domElements.booksContainer;
         
-        if(booksContainer.children.length == 0) booksContainer.setAttribute(empty, "");
+        
         
         LocalStorageManipulation.delete(li.id);
 
         const bookRemoved = new BookRemoval(li);
         bookRemoved.removeFromHTML();
+
+        if(booksContainer.children.length == 0) booksContainer.setAttribute("empty", "");
 
     }
 
@@ -321,6 +321,12 @@ form.addEventListener("submit", function(e){
 
     LocalStorageManipulation.set.call(formObject, bookId);
     
+    const li = domElements.booksContainer.querySelector("#" + bookId);
+    if(li){
+        const bookRemoved = new BookRemoval(li);
+        bookRemoved.removeFromHTML();
+    }
+
     const bookSubmission = new BookSubmit(formObject, bookId);
     bookSubmission.printBook();
 
@@ -331,11 +337,16 @@ form.addEventListener("submit", function(e){
 closeBtn.addEventListener("click", function(){
     dialog.close();
 
-    LocalStorageManipulation.id--;
-
     BookSubmit.removeImgContainerChildren();
-
-
 
 });
 
+document.addEventListener('keydown', function(event) {
+    if(event.key === 'Escape'){
+
+      if (dialog.open) {
+        BookSubmit.removeImgContainerChildren();
+
+      }
+    }
+  });

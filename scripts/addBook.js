@@ -1,22 +1,22 @@
-import { svgAddBook as openModalButton, dialogFormSubmitBtn as submitBtn, dialogForm as form } from "./domElements.js";
-import { booksContainer as container } from "./domElements.js";
-import { imgIndex as imgCarouselInd } from "./infiniteCarousel.js";
+// import { svgAddBook as openModalButton, dialogFormSubmitBtn as submitBtn, dialogForm as form } from "./domElements.js";
+// import { booksContainer as container } from "./domElements.js";
+// import { imgIndex as imgCarouselInd } from "./infiniteCarousel.js";
 
 
 
-document.addEventListener("click", (e) => {
-    const elem = e.target;
-    if(elem){
+// document.addEventListener("click", (e) => {
+//     const elem = e.target;
+//     if(elem){
         
         
 
 
-    }
-})
+//     }
+// })
 
-function BookEdit(){
+// function BookEdit(){
 
-}
+// }
 
 
 
